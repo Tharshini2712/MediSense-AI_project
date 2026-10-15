@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Symptom Intensity</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.main-wrapper{
+    display:flex;
+    min-height:88vh;
+}
+
+.sidebar{
+    width:260px;
+    border-right:1px solid #e5e7eb;
+    padding:40px 20px;
+    background:white;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    padding:16px 10px;
+    color:#94a3b8;
+}
+
+.sidebar .active{
+    color:#0f172a;
+    font-weight:600;
+    border-left:4px solid #2563eb;
+    padding-left:12px;
+}
+
+.content{
+    flex:1;
+    padding:50px 80px;
+    background:#f8fafc;
+}
+
+.slider-box{
+    margin-top:40px;
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+#value{
+    font-size:32px;
+    font-weight:bold;
+    color:#2563eb;
+}
+
+input[type=range]{
+    width:100%;
+    margin-top:20px;
+}
+
+.scale{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:10px;
+    cursor:pointer;
+    text-decoration:none;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">MediSense AI</div>
+</div>
+
+<div class="main-wrapper">
+
+```
+<div class="sidebar">
+
+    <ul>
+        <li>Introduction</li>
+        <li>Patient</li>
+        <li>Symptoms</li>
+        <li class="active">Interview</li>
+        <li>Results</li>
+    </ul>
+
+</div>
+
+<div class="content">
+
+    <a href="/carelevel">← Back</a>
+
+    <h1>Rate the symptom intensity</h1>
+
+    <p>
+        How severe are the symptoms right now?
+    </p>
+
+    <div class="slider-box">
+
+        <h2>
+            Intensity:
+            <span id="value">5</span>/10
+        </h2>
+
+        <input
+        type="range"
+        min="1"
+        max="10"
+        value="5"
+        id="slider">
+
+        <div class="scale">
+            <span>Mild</span>
+            <span>Unbearable</span>
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <form action="/save_intensity" method="POST">
+
+        <input
+        type="hidden"
+        name="intensity"
+        id="intensityValue"
+        value="5">
+
+        <button
+        type="submit"
+        class="btn-primary">
+
+            Predict Disease
+
+        </button>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<script>
+
+const slider =
+document.getElementById("slider");
+
+const value =
+document.getElementById("value");
+
+const hidden =
+document.getElementById("intensityValue");
+
+slider.oninput = function(){
+
+    value.innerHTML = this.value;
+
+    hidden.value = this.value;
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+symptom_id,symptom_name,symptom_display
+1,abdominal pain,Abdominal Pain
+2,acidity,Acidity
+3,altered sensorium,Altered Sensorium
+4,anxiety,Anxiety
+5,back pain,Back Pain
+6,belching,Belching
+7,belly pain,Belly Pain
+8,blackheads,Blackheads
+9,bladder discomfort,Bladder Discomfort
+10,blister,Blister
+11,blood in sputum,Blood In Sputum
+12,bloody stool,Bloody Stool
+13,blurred and distorted vision,Blurred And Distorted Vision
+14,blurred vision,Blurred Vision
+15,breathlessness,Breathlessness
+16,brittle nails,Brittle Nails
+17,bruising,Bruising
+18,burning micturition,Burning Micturition
+19,chest pain,Chest Pain
+20,chest tightness,Chest Tightness
+21,chills,Chills
+22,cold hands and feets,Cold Hands And Feets
+23,congestion,Congestion
+24,constipation,Constipation
+25,continuous feel of urine,Continuous Feel Of Urine
+26,continuous sneezing,Continuous Sneezing
+27,cough,Cough
+28,cramps,Cramps
+29,dark urine,Dark Urine
+30,dehydration,Dehydration
+31,depression,Depression
+32,diarrhoea,Diarrhoea
+33,dischromic patches,Dischromic Patches
+34,distention of abdomen,Distention Of Abdomen
+35,dizziness,Dizziness
+36,dryness,Dryness
+37,enlarged thyroid,Enlarged Thyroid
+38,excessive hunger,Excessive Hunger
+39,family history,Family History
+40,fast heart rate,Fast Heart Rate
+41,fatigue,Fatigue
+42,fluid overload,Fluid Overload
+43,foul smell of urine,Foul Smell Of Urine
+44,frequent urination,Frequent Urination
+45,headache,Headache
+46,high fever,High Fever
+47,hip joint pain,Hip Joint Pain
+48,increased appetite,Increased Appetite
+49,indigestion,Indigestion
+50,inflammatory nails,Inflammatory Nails
+51,internal itching,Internal Itching
+52,irregular sugar level,Irregular Sugar Level
+53,irritability,Irritability
+54,irritation in anus,Irritation In Anus
+55,itching,Itching
+56,jaw pain,Jaw Pain
+57,joint pain,Joint Pain
+58,knee pain,Knee Pain
+59,lack of concentration,Lack Of Concentration
+60,left arm pain,Left Arm Pain
+61,lethargy,Lethargy
+62,loss of appetite,Loss Of Appetite
+63,loss of balance,Loss Of Balance
+64,lower abdominal pain,Lower Abdominal Pain
+65,malaise,Malaise
+66,mild fever,Mild Fever
+67,mood swings,Mood Swings
+68,movement stiffness,Movement Stiffness
+69,mucoid sputum,Mucoid Sputum
+70,muscle pain,Muscle Pain
+71,muscle wasting,Muscle Wasting
+72,muscle weakness,Muscle Weakness
+73,nausea,Nausea
+74,neck pain,Neck Pain
+75,nodal skin eruptions,Nodal Skin Eruptions
+76,obesity,Obesity
+77,oily skin,Oily Skin
+78,pain behind the eyes,Pain Behind The Eyes
+79,pain during bowel movements,Pain During Bowel Movements
+80,pain in anal region,Pain In Anal Region
+81,painful walking,Painful Walking
+82,palpitations,Palpitations
+83,passage of gases,Passage Of Gases
+84,patches in throat,Patches In Throat
+85,phlegm,Phlegm
+86,polyuria,Polyuria
+87,prolonged fever,Prolonged Fever
+88,prominent veins on calf,Prominent Veins On Calf
+89,puffy face and eyes,Puffy Face And Eyes
+90,pus filled pimples,Pus Filled Pimples
+91,red patches on skin,Red Patches On Skin
+92,red sore around nose,Red Sore Around Nose
+93,red spots over body,Red Spots Over Body
+94,redness of eyes,Redness Of Eyes
+95,restlessness,Restlessness
+96,runny nose,Runny Nose
+97,rusty sputum,Rusty Sputum
+98,scarring,Scarring
+99,shivering,Shivering
+100,shoulder pain,Shoulder Pain
+101,silver like dusting,Silver Like Dusting
+102,sinus pressure,Sinus Pressure
+103,skin peeling,Skin Peeling
+104,skin rash,Skin Rash
+105,slurred speech,Slurred Speech
+106,small dents in nails,Small Dents In Nails
+107,spinning movements,Spinning Movements
+108,spotting urination,Spotting Urination
+109,stiff neck,Stiff Neck
+110,stomach cramps,Stomach Cramps
+111,stomach pain,Stomach Pain
+112,sunken eyes,Sunken Eyes
+113,sweating,Sweating
+114,swelled lymph nodes,Swelled Lymph Nodes
+115,swelling joints,Swelling Joints
+116,swelling of face,Swelling Of Face
+117,swelling of stomach,Swelling Of Stomach
+118,swollen blood vessels,Swollen Blood Vessels
+119,swollen legs,Swollen Legs
+120,throat irritation,Throat Irritation
+121,toxic look,Toxic Look
+122,ulcers on tongue,Ulcers On Tongue
+123,unsteadiness,Unsteadiness
+124,visual disturbances,Visual Disturbances
+125,vomiting,Vomiting
+126,watering from eyes,Watering From Eyes
+127,weakness in limbs,Weakness In Limbs
+128,weakness of one body side,Weakness Of One Body Side
+129,weight gain,Weight Gain
+130,weight loss,Weight Loss
+131,wheezing,Wheezing
+132,yellow crust ooze,Yellow Crust Ooze
+133,yellowing of eyes,Yellowing Of Eyes
+134,yellowish skin,Yellowish Skin

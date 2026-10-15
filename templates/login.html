@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | MediSense AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    /* ── Page layout ─────────────────────────────────────────── */
+    body { background: #f0f4ff; }
+
+    .auth-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* ── Card ────────────────────────────────────────────────── */
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: white;
+      border-radius: 20px;
+      padding: 44px 40px 36px;
+      box-shadow: 0 8px 40px rgba(37,99,235,0.10);
+    }
+
+    .auth-logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #2563eb;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .auth-tagline {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      margin: 0 0 28px;
+    }
+
+    .auth-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0 0 20px;
+    }
+
+    /* ── Flash messages ──────────────────────────────────────── */
+    .flash {
+      padding: 11px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .flash.error   { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .flash.success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .flash.warning { background: #fef9c3; color: #854d0e; border: 1px solid #fde68a; }
+
+    /* ── Form fields ─────────────────────────────────────────── */
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 9px;
+      font-size: 15px;
+      color: #1e293b;
+      margin-bottom: 18px;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .field-input:focus { border-color: #2563eb; }
+
+    /* ── Submit button ───────────────────────────────────────── */
+    .btn-auth {
+      width: 100%;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background 0.2s;
+    }
+    .btn-auth:hover { background: #1d4ed8; }
+
+    /* ── Bottom link ─────────────────────────────────────────── */
+    .auth-footer {
+      text-align: center;
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 22px;
+    }
+    .auth-footer a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .auth-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <div class="auth-logo">MediSense AI</div>
+    <p class="auth-tagline">AI-powered symptom checker</p>
+
+    <h2 class="auth-title">Welcome back</h2>
+
+    <!-- Flash messages from Flask -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Login form — POSTs to /login -->
+    <form action="/login" method="POST">
+
+      <label class="field-label" for="email">Email address</label>
+      <input
+        class="field-input"
+        type="email"
+        id="email"
+        name="email"
+        placeholder="you@example.com"
+        required
+        autocomplete="email"
+      >
+
+      <label class="field-label" for="password">Password</label>
+      <input
+        class="field-input"
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+        autocomplete="current-password"
+      >
+
+      <button type="submit" class="btn-auth">Log In</button>
+
+    </form>
+
+    <p class="auth-footer">
+      Don't have an account?
+      <a href="/register">Register here</a>
+    </p>
+
+  </div>
+</div>
+
+</body>
+</html>

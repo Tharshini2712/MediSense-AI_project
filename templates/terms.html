@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - MediSense AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .page-container{
+            display:flex;
+            min-height:90vh;
+        }
+
+        .sidebar{
+            width:250px;
+            border-right:1px solid #e2e8f0;
+            padding:40px 20px;
+            background:#ffffff;
+        }
+
+        .sidebar ul{
+            list-style:none;
+            padding:0;
+        }
+
+        .sidebar li{
+            padding:15px 0;
+            color:#94a3b8;
+            font-size:18px;
+        }
+
+        .sidebar .active{
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        .main-content{
+            flex:1;
+            padding:50px;
+        }
+
+        .terms-section{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:40px;
+        }
+
+        .terms-text{
+            width:60%;
+        }
+
+        .terms-text h1{
+            margin-bottom:20px;
+        }
+
+        .terms-text ul{
+            line-height:2;
+        }
+
+        .checkbox-group{
+            margin-top:30px;
+        }
+
+        .checkbox-group label{
+            display:block;
+            margin-bottom:20px;
+            font-size:16px;
+        }
+
+        .next-btn{
+            margin-top:20px;
+            display:inline-block;
+        }
+
+        .terms-image img{
+            width:350px;
+        }
+
+        .back-link{
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+
+        <div class="logo">
+            MediSense AI
+        </div>
+
+        <div class="nav-links">
+            <a href="#">For Business</a>
+            <a href="#">Language</a>
+        </div>
+
+    </div>
+
+    <div class="page-container">
+
+        <!-- Sidebar -->
+
+        <div class="sidebar">
+
+            <ul>
+                <li class="active">Introduction</li>
+                <li>Patient</li>
+                <li>Symptoms</li>
+                <li>Regions</li>
+                <li>Interview</li>
+                <li>Results</li>
+            </ul>
+
+        </div>
+
+        <!-- Main Content -->
+
+        <div class="main-content">
+
+            <a href="/home" class="back-link">
+                ← Back
+            </a>
+
+            <br><br>
+
+            <div class="terms-section">
+
+                <div class="terms-text">
+
+                    <h1>Terms of Service</h1>
+
+                    <p>
+                        Before using the checkup, please read the Terms of Service and remember:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Checkup isn't a diagnosis. It's only for your information and not a qualified medical opinion.
+                        </li>
+
+                        <li>
+                            Checkup isn't for emergencies. Call your local emergency number right away when there's a health emergency.
+                        </li>
+
+                        <li>
+                            Your data is safe. Privacy measures ensure the information you share is protected.
+                        </li>
+
+                    </ul>
+
+                    <div class="checkbox-group">
+
+                        <label>
+                            <input type="checkbox" required>
+                            (Required) I read and accept Terms of Service.
+                        </label>
+
+                        <label>
+                            <input type="checkbox" required>
+                            (Required) I agree for my health information to be used for the interview.
+                        </label>
+
+                    </div>
+
+                    <a href="/patient" class="btn-primary next-btn">
+                        Next
+                    </a>
+
+                </div>
+
+                <div class="terms-image">
+
+                    <img src="{{ url_for('static', filename='images/terms.png') }}" alt="Terms">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

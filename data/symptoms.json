@@ -1,0 +1,10 @@
+{
+    "fever": ["Viral Fever", "Dengue", "Malaria"],
+    "headache": ["Migraine", "Viral Fever"],
+    "vomiting": ["Food Poisoning", "Dengue"],
+    "cough": ["Common Cold", "Flu"],
+    "fatigue": ["Anemia", "Viral Fever"],
+    "body aches": ["Dengue", "Viral Fever"],
+    "sore throat": ["Common Cold", "Flu"],
+    "runny nose": ["Common Cold", "Allergy"]
+}

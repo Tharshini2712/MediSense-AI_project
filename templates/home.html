@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>MediSense AI</title>
+
+```
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+```
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+```
+<div class="logo">
+    MediSense AI
+</div>
+
+<div class="nav-links">
+    <a href="#">About Us</a>
+    <a href="#">For Business</a>
+    <a href="#">Apps</a>
+    <a href="#">English</a>
+
+    <a href="/terms" class="btn-primary">
+        Start Interview
+    </a>
+</div>
+```
+
+</div>
+
+<div class="hero">
+
+```
+<div class="hero-left">
+
+    <h1>
+        The symptom checker
+        made by doctors for you
+    </h1>
+
+    <ul>
+        <li>✓ Analyze your symptoms</li>
+        <li>✓ Understand your health</li>
+        <li>✓ Plan your next steps</li>
+        <li>✓ Get ready for your visit</li>
+    </ul>
+
+    <br>
+
+    <a href="/terms" class="btn-primary">
+        Start Interview
+    </a>
+
+</div>
+
+<div class="hero-right">
+
+    <img src="{{ url_for('static',
+    filename='images/welcome.png') }}">
+
+</div>
+```
+
+</div>
+
+</body>
+</html>

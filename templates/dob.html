@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Date of Birth</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.main-wrapper{
+    display:flex;
+    min-height:88vh;
+}
+
+.sidebar{
+    width:260px;
+    border-right:1px solid #e5e7eb;
+    padding:40px 20px;
+    background:white;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    padding:16px 10px;
+    color:#94a3b8;
+    font-size:20px;
+}
+
+.sidebar .active{
+    color:#0f172a;
+    font-weight:600;
+    border-left:4px solid #2563eb;
+    padding-left:12px;
+}
+
+.content{
+    flex:1;
+    padding:50px 80px;
+    background:#f8fafc;
+}
+
+.back-link{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+.question{
+    font-size:42px;
+    margin-top:25px;
+}
+
+.date-row{
+    display:flex;
+    gap:20px;
+    margin-top:40px;
+}
+
+.date-row input{
+    width:140px;
+    padding:15px;
+    font-size:18px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    outline:none;
+}
+
+.date-row input:focus{
+    border-color:#2563eb;
+}
+
+.age-box{
+    margin-top:30px;
+    font-size:24px;
+    font-weight:600;
+    color:#2563eb;
+}
+
+.button-group{
+    margin-top:40px;
+}
+
+.button-group .btn-primary{
+    margin-right:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+```
+<div class="logo">
+    MediSense AI
+</div>
+```
+
+</div>
+
+<div class="main-wrapper">
+
+```
+<div class="sidebar">
+
+    <ul>
+        <li>Introduction</li>
+        <li class="active">Patient</li>
+        <li>Symptoms</li>
+        <li>Regions</li>
+        <li>Interview</li>
+        <li>Results</li>
+    </ul>
+
+</div>
+
+<div class="content">
+
+    <a href="/gender" class="back-link">
+        ← Back
+    </a>
+
+    <h1 class="question">
+        What is your date of birth?
+    </h1>
+
+    <form action="/save_dob" method="POST">
+
+        <div class="date-row">
+
+            <input
+                type="number"
+                name="day"
+                id="day"
+                placeholder="Day"
+                min="1"
+                max="31"
+                required>
+
+            <input
+                type="number"
+                name="month"
+                id="month"
+                placeholder="Month"
+                min="1"
+                max="12"
+                required>
+
+            <input
+                type="number"
+                name="year"
+                id="year"
+                placeholder="Year"
+                min="1900"
+                max="2100"
+                required>
+
+        </div>
+
+        <div class="age-box" id="ageResult">
+            Age: -
+        </div>
+
+        <div class="button-group">
+
+            <button
+                type="button"
+                onclick="calculateAge()"
+                class="btn-primary">
+
+                Calculate Age
+
+            </button>
+
+            <button
+                type="submit"
+                class="btn-primary">
+
+                Next
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<script>
+
+function calculateAge() {
+
+    const day = parseInt(
+        document.getElementById("day").value
+    );
+
+    const month = parseInt(
+        document.getElementById("month").value
+    );
+
+    const year = parseInt(
+        document.getElementById("year").value
+    );
+
+    if (!day || !month || !year) {
+
+        document.getElementById(
+            "ageResult"
+        ).innerHTML =
+        "Please enter a valid date.";
+
+        return;
+    }
+
+    const today = new Date();
+
+    let age =
+        today.getFullYear() - year;
+
+    if (
+        today.getMonth() + 1 < month ||
+        (
+            today.getMonth() + 1 === month &&
+            today.getDate() < day
+        )
+    ) {
+        age--;
+    }
+
+    document.getElementById(
+        "ageResult"
+    ).innerHTML =
+    "Age: " + age + " Years";
+}
+
+</script>
+
+</body>
+</html>

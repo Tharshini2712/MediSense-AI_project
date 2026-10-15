@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Patient Selection | MediSense AI</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.main-wrapper{
+    display:flex;
+    min-height:88vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:260px;
+    border-right:1px solid #e5e7eb;
+    padding:40px 20px;
+    background:white;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    padding:16px 10px;
+    color:#94a3b8;
+    font-size:20px;
+}
+
+.sidebar .active{
+    color:#0f172a;
+    font-weight:600;
+    border-left:4px solid #2563eb;
+    padding-left:12px;
+}
+
+/* Content */
+
+.content{
+    flex:1;
+    padding:50px 80px;
+    background:#f8fafc;
+}
+
+.back-link{
+    text-decoration:none;
+    color:#2563eb;
+    font-size:18px;
+}
+
+.question{
+    margin-top:30px;
+    font-size:48px;
+    font-weight:600;
+    color:#0f172a;
+}
+
+/* Cards */
+
+.card-container{
+    display:flex;
+    gap:30px;
+    margin-top:50px;
+}
+
+.patient-card{
+    width:330px;
+    height:230px;
+    background:white;
+    border:2px solid #dbeafe;
+    border-radius:16px;
+    cursor:pointer;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    transition:0.3s;
+}
+
+.patient-card:hover{
+
+    border-color:#2563eb;
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0px 8px 25px
+    rgba(0,0,0,0.08);
+
+}
+
+.patient-card img{
+    width:90px;
+    margin-bottom:20px;
+}
+
+.patient-card h3{
+    margin:0;
+    font-size:28px;
+    color:#0f172a;
+}
+
+.report-link{
+    margin-top:40px;
+    color:#2563eb;
+    display:inline-block;
+    text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        MediSense AI
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#">For Business</a>
+
+        <a href="/">Restart Assessment</a>
+
+        <a href="#">English ▼</a>
+
+    </div>
+
+</div>
+
+<!-- PAGE -->
+
+<div class="main-wrapper">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <ul>
+
+            <li>Introduction</li>
+
+            <li class="active">
+                Patient
+            </li>
+
+            <li>Symptoms</li>
+
+            <li>Regions</li>
+
+            <li>Interview</li>
+
+            <li>Results</li>
+
+        </ul>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <a href="/terms"
+        class="back-link">
+
+            ← Back
+
+        </a>
+
+        <h1 class="question">
+            Who is the survey for?
+        </h1>
+
+        <div class="card-container">
+
+            <!-- Myself -->
+
+            <div class="patient-card"
+            onclick="window.location.href='/set_patient/Myself'">
+
+                <img src="{{ url_for('static',
+                filename='images/patient.png') }}">
+
+                <h3>Myself</h3>
+
+            </div>
+
+            <!-- Someone Else -->
+
+            <div class="patient-card"
+            onclick="window.location.href='/set_patient/Someone Else'">
+
+                <img src="{{ url_for('static',
+                filename='images/someone_else.png') }}">
+
+                <h3>Someone Else</h3>
+
+            </div>
+
+        </div>
+
+        <a href="#"
+        class="report-link">
+
+            Report an issue with this question
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

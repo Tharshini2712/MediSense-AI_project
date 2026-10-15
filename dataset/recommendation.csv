@@ -1,0 +1,42 @@
+disease,care_level,recommendation
+Fungal infection,Home Care,Apply antifungal cream. Keep area dry and clean. Wear loose breathable clothing.
+Allergy,Home Care,Take antihistamines. Avoid known allergens. Use an air purifier indoors.
+GERD,Clinic Visit,Avoid spicy and oily food. Sleep with head elevated. Visit a gastroenterologist.
+Chronic cholestasis,Hospital,Seek immediate medical attention. Liver function tests required. Avoid alcohol.
+Drug Reaction,Hospital,Stop suspected medication immediately. Visit ER if severe. Do not self-medicate.
+Peptic ulcer disease,Clinic Visit,Take antacids as prescribed. Avoid NSAIDs and alcohol. Eat small frequent meals.
+AIDS,Hospital,Consult an infectious disease specialist immediately. Antiretroviral therapy required.
+Diabetes,Clinic Visit,Monitor blood sugar regularly. Maintain a low-sugar diet. Exercise daily.
+Gastroenteritis,Home Care,Stay hydrated with ORS. Rest well. Avoid solid food for first 24 hours.
+Bronchial Asthma,Clinic Visit,Use prescribed inhaler. Avoid dust and smoke. See a pulmonologist.
+Hypertension,Clinic Visit,Reduce salt intake. Exercise regularly. Take prescribed antihypertensives.
+Migraine,Home Care,Rest in a dark quiet room. Apply cold compress. Take prescribed migraine medication.
+Cervical spondylosis,Clinic Visit,Do neck exercises. Use a cervical pillow. See a physiotherapist.
+Paralysis (brain hemorrhage),Hospital,Call emergency services immediately. Do not move the patient. Time is critical.
+Jaundice,Hospital,Avoid fatty foods. Get liver function tests done. Consult a hepatologist.
+Malaria,Hospital,Take antimalarial medication. Stay indoors at dusk and dawn. Use mosquito nets.
+Chicken pox,Home Care,Isolate to prevent spread. Apply calamine lotion. Take antivirals if prescribed.
+Dengue,Hospital,Monitor platelet count. Stay well hydrated. Avoid aspirin and NSAIDs.
+Typhoid,Hospital,Take prescribed antibiotics. Drink only boiled water. Rest completely.
+Hepatitis A,Clinic Visit,Rest and stay hydrated. Avoid alcohol. Get follow-up liver tests.
+Hepatitis B,Hospital,Consult a hepatologist. Take antiviral medication. Avoid alcohol completely.
+Hepatitis C,Hospital,Consult a hepatologist. Antiviral therapy available. Avoid alcohol.
+Hepatitis D,Hospital,Requires Hepatitis B treatment. Consult a liver specialist immediately.
+Hepatitis E,Hospital,Rest and drink fluids. Usually self-limiting. Avoid alcohol. Monitor liver.
+Alcoholic hepatitis,Hospital,Stop alcohol immediately. Nutritional support needed. Consult hepatologist.
+Tuberculosis,Hospital,Take full course of TB medication (6 months). Wear mask. Isolate initially.
+Common Cold,Home Care,Rest and drink warm fluids. Take decongestants if needed. Gargle with salt water.
+Pneumonia,Hospital,Take prescribed antibiotics. Rest completely. Monitor oxygen levels.
+Dimorphic hemorrhoids,Clinic Visit,Eat high-fibre diet. Avoid straining. Sitz baths help. See a proctologist.
+Heart attack,Hospital,Call emergency services immediately. Chew aspirin if available. Do not drive.
+Varicose veins,Clinic Visit,Elevate legs when resting. Wear compression stockings. Avoid prolonged standing.
+Hypothyroidism,Clinic Visit,Take thyroid hormone replacement as prescribed. Regular TSH tests required.
+Hyperthyroidism,Clinic Visit,Take prescribed antithyroid medication. Avoid caffeine. Monitor heart rate.
+Hypoglycemia,Home Care,Consume fast-acting sugar such as juice or glucose. Eat regular meals. Monitor blood sugar.
+Osteoarthritis,Clinic Visit,Low-impact exercise. Weight management. Physical therapy. Pain relief medication.
+Arthritis,Clinic Visit,Anti-inflammatory medication. Physical therapy. Apply warm or cold compresses.
+Vertigo,Clinic Visit,Epley manoeuvre by a physiotherapist. Avoid sudden head movements. Rest.
+Acne,Home Care,Wash face twice daily. Avoid picking pimples. Use non-comedogenic products.
+Urinary tract infection,Clinic Visit,Drink plenty of water. Take prescribed antibiotics. Avoid caffeine and alcohol.
+Psoriasis,Clinic Visit,Use prescribed topical steroids. Moisturise regularly. See a dermatologist.
+Impetigo,Clinic Visit,Apply prescribed antibiotic cream. Keep area clean. Avoid touching lesions.

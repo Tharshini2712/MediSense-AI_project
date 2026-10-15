@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symptoms | MediSense AI</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+/* ── Layout — same as your original ─────────────────────────── */
+.main-wrapper {
+    display: flex;
+    min-height: 88vh;
+}
+
+.sidebar {
+    width: 260px;
+    border-right: 1px solid #e5e7eb;
+    padding: 40px 20px;
+    background: white;
+}
+
+.sidebar ul { list-style: none; padding: 0; }
+
+.sidebar li {
+    padding: 16px 10px;
+    color: #94a3b8;
+}
+
+.sidebar .active {
+    color: #0f172a;
+    font-weight: 600;
+    border-left: 4px solid #2563eb;
+    padding-left: 12px;
+}
+
+.content {
+    flex: 1;
+    padding: 50px 80px;
+    background: #f8fafc;
+}
+
+/* ── Autocomplete container ──────────────────────────────────── */
+.ac-wrapper {
+    position: relative;
+    width: 560px;
+}
+
+/* ── The visible tag+input box ───────────────────────────────── */
+.tag-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-height: 54px;
+    padding: 10px 14px;
+    background: white;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    cursor: text;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.tag-box:focus-within {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+
+/* ── Each blue symptom tag ───────────────────────────────────── */
+.sym-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #dbeafe;
+    color: #1e40af;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    animation: tagpop 0.15s ease;
+}
+
+@keyframes tagpop {
+    from { transform: scale(0.75); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+.sym-tag .x {
+    cursor: pointer;
+    font-size: 13px;
+    color: #93c5fd;
+    font-weight: bold;
+    line-height: 1;
+    transition: color 0.15s;
+}
+.sym-tag .x:hover { color: #1e3a8a; }
+
+/* ── Text input inside the tag box ──────────────────────────── */
+#symInput {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #1e293b;
+    background: transparent;
+    flex: 1;
+    min-width: 180px;
+    padding: 4px 2px;
+    font-family: inherit;
+}
+
+#symInput::placeholder { color: #94a3b8; }
+
+/* ── Dropdown list ───────────────────────────────────────────── */
+#dropBox {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.11);
+    z-index: 9999;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+/* Each row in the dropdown */
+.drop-item {
+    padding: 11px 16px;
+    font-size: 15px;
+    color: #1e293b;
+    cursor: pointer;
+    transition: background 0.1s;
+    border-bottom: 1px solid #f8fafc;
+}
+
+.drop-item:first-child { border-radius: 12px 12px 0 0; }
+.drop-item:last-child  { border-radius: 0 0 12px 12px; border-bottom: none; }
+
+.drop-item:hover,
+.drop-item.hi { background: #eff6ff; color: #2563eb; }
+
+/* Bold the matching part of the symptom name */
+.drop-item b { font-weight: 700; }
+
+/* "No results" message */
+.drop-empty {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #94a3b8;
+    text-align: center;
+}
+
+/* ── Helper line ─────────────────────────────────────────────── */
+.hint {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 8px;
+    margin-bottom: 26px;
+}
+
+/* ── Count badge in heading ──────────────────────────────────── */
+#cntBadge {
+    display: none;
+    background: #2563eb;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.next-btn { margin-top: 24px; }
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="logo">MediSense AI</div>
+</div>
+
+<div class="main-wrapper">
+
+    <div class="sidebar">
+        <ul>
+            <li>Introduction</li>
+            <li>Patient</li>
+            <li class="active">Symptoms</li>
+            <li>Regions</li>
+            <li>Interview</li>
+            <li>Results</li>
+        </ul>
+    </div>
+
+    <div class="content">
+
+        <a href="/history">← Back</a>
+
+        <h1>
+            Add Symptoms
+            <span id="cntBadge"></span>
+        </h1>
+
+        <p>Start typing a symptom — select from the dropdown suggestions.
+           Add as many as you have.</p>
+
+        <!-- ── Autocomplete widget ── -->
+        <div class="ac-wrapper">
+
+            <div class="tag-box" id="tagBox"
+                 onclick="document.getElementById('symInput').focus()">
+                <!-- tags injected here -->
+                <input type="text" id="symInput"
+                       placeholder="e.g. headache, fever, chest pain…"
+                       autocomplete="off" spellcheck="false">
+            </div>
+
+            <div id="dropBox"></div>
+
+        </div>
+
+        <p class="hint">
+            ⌨&nbsp; Type to search &nbsp;·&nbsp;
+            Click a suggestion or press <strong>Enter</strong> to add &nbsp;·&nbsp;
+            Click&nbsp;<strong>✖</strong>&nbsp;on a tag to remove
+        </p>
+
+        <!-- Form submits to Flask unchanged -->
+        <form action="/save_symptoms" method="POST">
+            <input type="hidden" id="hidSym" name="symptoms">
+            <button type="submit" class="btn-primary next-btn">Next →</button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+// ── Hardcoded full symptom list ─────────────────────────────────────────────
+// This is the FALLBACK. If /api/symptoms loads successfully, it overwrites this.
+// This means the dropdown works even before the ML model is set up.
+const FALLBACK_SYMPTOMS = [
+    "abdominal pain","acidity","altered sensorium","anxiety",
+    "back pain","belly pain","blackheads","bladder discomfort",
+    "blister","blood in sputum","blurred and distorted vision",
+    "body aches","breathlessness","bruising","burning micturition",
+    "chest pain","chest tightness","chills","cold hands and feets",
+    "congestion","constipation","continuous feel of urine",
+    "continuous sneezing","cough","cramps",
+    "dark urine","dehydration","depression","diarrhoea",
+    "dischromic patches","distention of abdomen","dryness",
+    "enlarged thyroid","excessive hunger","fatigue","fever",
+    "fluid overload","foul smell of urine","frequent urination",
+    "headache","high fever","hip joint pain",
+    "history of alcohol consumption","inflammatory nails",
+    "internal itching","irritability","irritation in anus","itching",
+    "jaw pain","joint pain","knee pain",
+    "lack of concentration","left arm pain","lethargy",
+    "loss of appetite","loss of balance","lower abdominal pain",
+    "malaise","mild fever","mood swings","movement stiffness",
+    "mucoid sputum","muscle pain","muscle wasting","muscle weakness",
+    "nausea","neck pain","nodal skin eruptions",
+    "obesity","oily skin","pain behind the eyes",
+    "pain during bowel movements","pain in anal region",
+    "painful walking","palpitations","passage of gases",
+    "patches in throat","phlegm","polyuria","prolonged fever",
+    "prominent veins on calf","puffy face and eyes","pus filled pimples",
+    "red patches on skin","red sore around nose","red spots over body",
+    "restlessness","runny nose","rusty sputum","scarring","shivering",
+    "silver like dusting","skin peeling","skin rash","slurred speech",
+    "small dents in nails","sore throat","spinning movements",
+    "stiff neck","stomach cramps","stomach pain",
+    "sunken eyes","swelled lymph nodes","swelling joints",
+    "swelling of stomach","swollen blood vessels","swollen legs",
+    "sweating","throat irritation","toxic look",
+    "ulcers on tongue","unsteadiness","visual disturbances","vomiting",
+    "watering from eyes","weakness in limbs","weakness of one body side",
+    "weight gain","weight loss","wheezing",
+    "yellowing of eyes","yellowish skin","yellow crust ooze",
+];
+
+// ── State ────────────────────────────────────────────────────────────────────
+let ALL   = [...FALLBACK_SYMPTOMS];  // starts with fallback, replaced if API works
+let added = [];                       // currently selected symptom strings
+let hiIdx = -1;                       // keyboard highlight index
+
+const inp     = document.getElementById("symInput");
+const drop    = document.getElementById("dropBox");
+const tagBox  = document.getElementById("tagBox");
+const hidSym  = document.getElementById("hidSym");
+const badge   = document.getElementById("cntBadge");
+
+// ── Try to load from Flask /api/symptoms (replaces fallback if it works) ─────
+fetch("/api/symptoms")
+    .then(r => { if (!r.ok) throw new Error("no route"); return r.json(); })
+    .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+            ALL = data;
+            console.log("Loaded", ALL.length, "symptoms from /api/symptoms");
+        }
+    })
+    .catch(() => {
+        console.log("Using built-in symptom list (", ALL.length, "symptoms)");
+    });
+
+// ── Filter symptoms as user types ────────────────────────────────────────────
+inp.addEventListener("input", function () {
+    const q = this.value.trim().toLowerCase();
+    hiIdx = -1;
+
+    if (!q) { hideDrop(); return; }
+
+    const hits = ALL.filter(s => s.includes(q) && !added.includes(s)).slice(0, 12);
+    showDrop(hits, q);
+});
+
+// ── Keyboard navigation ───────────────────────────────────────────────────────
+inp.addEventListener("keydown", function (e) {
+    const rows = drop.querySelectorAll(".drop-item");
+
+    if (e.key === "ArrowDown") {
+        e.preventDefault();
+        hiIdx = Math.min(hiIdx + 1, rows.length - 1);
+        highlight(rows);
+    } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        hiIdx = Math.max(hiIdx - 1, -1);
+        highlight(rows);
+    } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (hiIdx >= 0 && rows[hiIdx]) {
+            pickSymptom(rows[hiIdx].dataset.val);
+        } else {
+            // Try to match what was typed
+            const q   = this.value.trim().toLowerCase();
+            const hit = ALL.find(s => s.includes(q) && !added.includes(s));
+            if (hit) pickSymptom(hit);
+        }
+    } else if (e.key === "Escape") {
+        hideDrop();
+    } else if (e.key === "Backspace" && this.value === "" && added.length) {
+        removeSymptom(added[added.length - 1]);
+    }
+});
+
+// ── Build and show the dropdown ───────────────────────────────────────────────
+function showDrop(hits, q) {
+    if (!hits.length) {
+        drop.innerHTML = `<div class="drop-empty">No symptoms match "<strong>${q}</strong>" — try different spelling</div>`;
+        drop.style.display = "block";
+        return;
+    }
+
+    drop.innerHTML = hits.map(s => {
+        // Bold the matched part
+        const i      = s.indexOf(q);
+        const label  = s.slice(0, i)
+                     + "<b>" + s.slice(i, i + q.length) + "</b>"
+                     + s.slice(i + q.length);
+        return `<div class="drop-item" data-val="${s}" onmousedown="pickSymptom('${s}')">${label}</div>`;
+    }).join("");
+
+    drop.style.display = "block";
+}
+
+function hideDrop() {
+    drop.style.display = "none";
+    hiIdx = -1;
+}
+
+function highlight(rows) {
+    rows.forEach((r, i) => r.classList.toggle("hi", i === hiIdx));
+}
+
+// ── Add a symptom ─────────────────────────────────────────────────────────────
+function pickSymptom(sym) {
+    sym = sym.trim().toLowerCase();
+    if (!sym || added.includes(sym)) { inp.value = ""; hideDrop(); return; }
+
+    added.push(sym);
+
+    // Create tag element, insert before the input
+    const tag = document.createElement("span");
+    tag.className    = "sym-tag";
+    tag.dataset.sym  = sym;
+    tag.innerHTML    = `${sym}&nbsp;<span class="x" onmousedown="removeSymptom('${sym}')">✖</span>`;
+    tagBox.insertBefore(tag, inp);
+
+    inp.value = "";
+    hideDrop();
+    syncForm();
+    inp.focus();
+}
+
+// ── Remove a symptom ─────────────────────────────────────────────────────────
+function removeSymptom(sym) {
+    added = added.filter(s => s !== sym);
+    const el = tagBox.querySelector(`[data-sym="${sym}"]`);
+    if (el) el.remove();
+    syncForm();
+    inp.focus();
+}
+
+// ── Keep the hidden input + counter in sync ───────────────────────────────────
+function syncForm() {
+    hidSym.value          = added.join(",");
+    badge.textContent     = added.length;
+    badge.style.display   = added.length > 0 ? "inline-block" : "none";
+}
+
+// ── Close dropdown when clicking outside the widget ──────────────────────────
+document.addEventListener("click", function (e) {
+    if (!e.target.closest(".ac-wrapper")) hideDrop();
+});
+</script>
+
+</body>
+</html>

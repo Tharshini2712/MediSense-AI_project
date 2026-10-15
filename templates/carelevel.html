@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Level | MediSense AI</title>
+
+```
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+```
+
+</head>
+<body>
+
+```
+<div class="page-container">
+
+    <div class="form-card">
+
+        <h2>How much care do you think you need?</h2>
+
+        <p>
+            Select the level of care you believe is appropriate for your symptoms.
+        </p>
+
+        <form action="/save_carelevel" method="POST">
+
+            <div class="option">
+                <input type="radio" name="care_level" value="Doing Nothing" required>
+                Doing Nothing
+            </div>
+
+            <div class="option">
+                <input type="radio" name="care_level" value="Self Care">
+                Self Care
+            </div>
+
+            <div class="option">
+                <input type="radio" name="care_level" value="Primary Care">
+                Primary Care
+            </div>
+
+            <div class="option">
+                <input type="radio" name="care_level" value="Specialist Care">
+                Specialist Care
+            </div>
+
+            <div class="option">
+                <input type="radio" name="care_level" value="Urgent Care">
+                Urgent Care
+            </div>
+
+            <div class="option">
+                <input type="radio" name="care_level" value="Emergency Room">
+                Emergency Room
+            </div>
+
+            <button type="submit" class="btn-primary">
+                Next
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>

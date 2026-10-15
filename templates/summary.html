@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary | MediSense AI</title>
+
+```
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+```
+
+</head>
+<body>
+
+```
+<div class="page-container">
+
+    <div class="form-card">
+
+        <h2>Health Assessment Summary</h2>
+
+        <p>
+            Review your information and the predicted conditions below.
+        </p>
+
+        <hr>
+
+        <h3>Patient Information</h3>
+
+        <p><strong>Patient Type:</strong> {{ patient_type }}</p>
+
+        <p><strong>Gender:</strong> {{ gender }}</p>
+
+        <p><strong>Age:</strong> {{ age }}</p>
+
+        <p><strong>Care Level:</strong> {{ care_level }}</p>
+
+        <p><strong>Intensity:</strong> {{ intensity }}</p>
+
+        <hr>
+
+        <h3>Symptoms</h3>
+
+        {% if symptoms %}
+            <ul>
+                {% for symptom in symptoms %}
+                    <li>{{ symptom }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No symptoms entered.</p>
+        {% endif %}
+
+        <hr>
+
+        <h3>Predicted Diseases</h3>
+
+        {% if diseases %}
+            <ul>
+                {% for disease, confidence in diseases %}
+                    <li>
+                        <strong>{{ disease }}</strong> -
+                        {{ confidence }}%
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No disease predictions available.</p>
+        {% endif %}
+
+        <br>
+
+        <a href="/download_report" class="btn-primary">
+            Download PDF Report
+        </a>
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>

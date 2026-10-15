@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gender Selection | MediSense AI</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+.main-wrapper{
+    display:flex;
+    min-height:88vh;
+}
+
+.sidebar{
+    width:260px;
+    border-right:1px solid #e5e7eb;
+    padding:40px 20px;
+    background:white;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    padding:16px 10px;
+    color:#94a3b8;
+    font-size:20px;
+}
+
+.sidebar .active{
+    color:#0f172a;
+    font-weight:600;
+    border-left:4px solid #2563eb;
+    padding-left:12px;
+}
+
+.content{
+    flex:1;
+    padding:50px 80px;
+    background:#f8fafc;
+}
+
+.back-link{
+    color:#2563eb;
+    text-decoration:none;
+    font-size:18px;
+}
+
+.question{
+    font-size:42px;
+    margin-top:25px;
+    color:#0f172a;
+    font-weight:600;
+}
+
+.card-container{
+    display:flex;
+    gap:30px;
+    margin-top:50px;
+}
+
+.gender-card{
+    width:320px;
+    height:220px;
+    background:white;
+    border:2px solid #dbeafe;
+    border-radius:16px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.gender-card:hover{
+
+    border-color:#2563eb;
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0px 8px 25px
+    rgba(0,0,0,0.08);
+
+}
+
+.gender-card img{
+    width:90px;
+    margin-bottom:20px;
+}
+
+.gender-card h3{
+    margin:0;
+    color:#0f172a;
+    font-size:28px;
+}
+
+.report-link{
+    margin-top:40px;
+    display:inline-block;
+    color:#2563eb;
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        MediSense AI
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#">For Business</a>
+
+        <a href="/">Restart Assessment</a>
+
+        <a href="#">English ▼</a>
+
+    </div>
+
+</div>
+
+<!-- PAGE -->
+
+<div class="main-wrapper">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <ul>
+
+            <li>Introduction</li>
+
+            <li class="active">
+                Patient
+            </li>
+
+            <li>Symptoms</li>
+
+            <li>Regions</li>
+
+            <li>Interview</li>
+
+            <li>Results</li>
+
+        </ul>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <a href="/patient"
+        class="back-link">
+
+            ← Back
+
+        </a>
+
+        <h1 class="question">
+
+            What sex was originally listed
+            on the birth certificate?
+
+        </h1>
+
+        <div class="card-container">
+
+            <!-- Female -->
+
+            <div class="gender-card"
+            onclick="window.location.href='/set_gender/Female'">
+
+                <img src="{{ url_for('static',
+                filename='images/female.png') }}">
+
+                <h3>Female</h3>
+
+            </div>
+
+            <!-- Male -->
+
+            <div class="gender-card"
+            onclick="window.location.href='/set_gender/Male'">
+
+                <img src="{{ url_for('static',
+                filename='images/male.png') }}">
+
+                <h3>Male</h3>
+
+            </div>
+
+        </div>
+
+        <a href="#"
+        class="report-link">
+
+            Report an issue with this question
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
